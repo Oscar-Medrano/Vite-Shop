@@ -11,10 +11,43 @@ const Navbar = () => {
     const OpenShoppingBag = () => { 
         context.openSideMenu()
     }
+//-----------Sign Out
+    const signOut = localStorage.getItem('sign-out')
+    const parsedSignOut = JSON.parse(signOut)
+    const isUserSignOut = context.signOut || parsedSignOut
 
+    const handleSignOut = () => {
+        const stringifiedSignOut = JSON.stringify(true)
+        localStorage.setItem('sign-out', stringifiedSignOut)
+        context.setSignOut(true)
+    }
+
+        const renderView = () => {
+            if(isUserSignOut){
+                return(
+                    <NavLink 
+                    to="/SignIn"
+                    className = {({ isActive }) => isActive ? activeStyle : undefined }
+                    onClick={() => handleSignOut()}><a className='text-white'>Sign In</a></NavLink>
+                )
+            }
+            else{
+                return(
+                    <>
+                        <li className='text-white'><NavLink to="/MyOrders">My Orders</NavLink></li>
+                        <li className='text-white'><NavLink to="/MyAcount">My Acount</NavLink></li>
+                        <li className='text-white'>
+                            <NavLink 
+                            to="/SignIn"
+                            className = {({ isActive }) => isActive ? activeStyle : undefined }
+                            onClick={() => handleSignOut()}><a className='text-white'>Sign Out</a></NavLink>
+                        </li>
+                    </>
+                )
+            }
+        }
 
     return(
-        
         <nav className="bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-600 flex justify-between items-center fixed z-10 w-full top-0 py-5 px-8 font-light text-sm">
             <ul className="flex items-center gap-3">
                 <li className="font-semibold text-lg text-white"><NavLink to="/">Vite-Shop</NavLink></li>
@@ -56,11 +89,9 @@ const Navbar = () => {
             </ul>
 
             <ul className="flex items-center gap-3">
-                <li className='text-white'><NavLink to="/MyOrders">My Orders</NavLink></li>
-                <li className='text-white'><NavLink to="/MyAcount">My Acount</NavLink></li>
-                <li className='text-white'><NavLink to="/SignIn">Sign In</NavLink></li>
+                {renderView()}
                 <li className='text-white p-1 flex items-center'>
-                <ShoppingBagIcon 
+                    <ShoppingBagIcon 
                     onClick = {() => OpenShoppingBag()}
                     className='h-6 w-6'></ShoppingBagIcon>
 

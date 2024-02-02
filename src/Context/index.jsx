@@ -4,6 +4,30 @@ import PropTypes from 'prop-types';
 
 export const ShoppingCartContext = createContext()
 
+//------------------------------------------------initializeLocalStorage = Sign-out logic------------------
+export const initializeLocalStorage = () => {
+    const acountInLocalStorage = localStorage.getItem('acount');
+    const signOutInLocalStorage = localStorage.getItem('sign-out');
+    let parsedAcount
+    let parsedSignOut
+
+    if (!acountInLocalStorage) {
+        localStorage.setItem('acount', JSON.stringify({}))
+        parsedAcount = {}
+    }
+    else{
+        parsedAcount = JSON.parse(acountInLocalStorage)
+    }
+
+    if (!signOutInLocalStorage) {
+        localStorage.setItem('sign-out', JSON.stringify({}))
+        parsedSignOut = {}
+    }
+    else{
+        parsedSignOut = JSON.parse(signOutInLocalStorage)
+    }
+}
+
 export const ShoppingCartProvider = ({children}) => {
     //--------------------------------------------------------------Handle Delete---------------------------------------------------------
     const handleDelet = (id) => {
@@ -11,6 +35,12 @@ export const ShoppingCartProvider = ({children}) => {
         setProductsCart(filteredProducts);
         setCount(filteredProducts.length); //-------------------setting the count of products-----------------
       };
+
+    //Acount
+    const [acount, setAcount,] = useState({})
+
+    //SignOut
+    const [signOut, setSignOut] = useState(false)
 
     //---------------------------------------------------------Product detail open/close--------------------------------------------------
     const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
@@ -59,30 +89,24 @@ export const ShoppingCartProvider = ({children}) => {
     
     return(
         <ShoppingCartContext.Provider value={
-            {items, 
-            setItems,
-            count, 
-            setCount, 
+            {items, setItems,
+            count, setCount, 
             increment,
             openProductDetail,
             closeProductDetail,
             isProductDetailOpen,
-            showProductDetail,
-            setShowProductDetail,
-            productsCart, 
-            setProductsCart,
+            showProductDetail,setShowProductDetail,
+            productsCart, setProductsCart,
             isSideMenuOpen, 
             openSideMenu,
             closeSideMenu,
             handleDelet,
-            order, 
-            setOrder,
-            searchByTitle, 
-            setSearchByTitle,
-            titleFilter, 
-            setTitleFilter,
-            searchByCategory, 
-            setSearchByCategory,
+            order, setOrder,
+            searchByTitle, setSearchByTitle,
+            titleFilter, setTitleFilter,
+            searchByCategory, setSearchByCategory,
+            acount, setAcount,
+            signOut, setSignOut,
             }}>
             {children}
         </ShoppingCartContext.Provider>
