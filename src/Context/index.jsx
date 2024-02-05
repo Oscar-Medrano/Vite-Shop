@@ -6,17 +6,17 @@ export const ShoppingCartContext = createContext()
 
 //------------------------------------------------initializeLocalStorage = Sign-out logic------------------
 export const initializeLocalStorage = () => {
-    const acountInLocalStorage = localStorage.getItem('acount');
+    const accountInLocalStorage = localStorage.getItem('account');
     const signOutInLocalStorage = localStorage.getItem('sign-out');
-    let parsedAcount
+    let parsedAccount
     let parsedSignOut
 
-    if (!acountInLocalStorage) {
+    if (!accountInLocalStorage) {
         localStorage.setItem('acount', JSON.stringify({}))
-        parsedAcount = {}
+        parsedAccount = {}
     }
     else{
-        parsedAcount = JSON.parse(acountInLocalStorage)
+        parsedAccount = JSON.parse(accountInLocalStorage)
     }
 
     if (!signOutInLocalStorage) {
@@ -37,7 +37,7 @@ export const ShoppingCartProvider = ({children}) => {
       };
 
     //Acount
-    const [acount, setAcount,] = useState({})
+    const [account, setAccount,] = useState({})
 
     //SignOut
     const [signOut, setSignOut] = useState(false)
@@ -105,7 +105,7 @@ export const ShoppingCartProvider = ({children}) => {
             searchByTitle, setSearchByTitle,
             titleFilter, setTitleFilter,
             searchByCategory, setSearchByCategory,
-            acount, setAcount,
+            account, setAccount,
             signOut, setSignOut,
             }}>
             {children}

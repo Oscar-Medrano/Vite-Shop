@@ -28,7 +28,7 @@ const Navbar = () => {
                     <NavLink 
                     to="/SignIn"
                     className = {({ isActive }) => isActive ? activeStyle : undefined }
-                    onClick={() => handleSignOut()}><a className='text-white'>Sign In</a></NavLink>
+                    onClick={() => handleSignOut()}><a className='text-white'>Sign Out</a></NavLink>
                 )
             }
             else{
