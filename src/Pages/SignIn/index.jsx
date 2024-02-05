@@ -25,8 +25,6 @@ function SignIn() {
     return <Navigate replace to={'/'}/>
   }
 
-
-
   const createAnAccount = ()=>{
     const formData = new FormData(form.current)
     const data={
@@ -58,7 +56,7 @@ function SignIn() {
             <button 
             className='bg-blue-500 disabled:bg-blue-500/70 text-white w-full rounded-lg'
             disabled = {!hasUserAnAccount}
-            onClick = {handleSignIn()}>
+            onClick = {() => handleSignIn()}>
               Log In
             </button>
           </Link>
@@ -96,7 +94,7 @@ function SignIn() {
           id='email'
           name='email'
           defaultValue={parsedAccount?.email} 
-          placeholder='helloworld@gmail.com' 
+          placeholder='helloworld@example.com' 
           className='rounded-lg border border-black placeholder:font-light placeholder:text-md placeholder:text-black/60 focus:outline-none py-2 px-4' />
         </div>
 
@@ -124,7 +122,6 @@ function SignIn() {
   }
 
   const renderView = () => view === 'create-user-info' ? renderCreateUserInfo() : renderLogIn()
-
     return (
       <Layout>
         <h1 className="font-medium text-xl text-center mb-6 w-80">Welcome to Vite-Shop</h1>

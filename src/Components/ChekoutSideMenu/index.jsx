@@ -25,7 +25,7 @@ const ChekoutSideMenu = () => {
 
     return(
         <aside className={`${context.isSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu 
-        bg-white/85
+        bg-white border border-blue-500
         flex-col overflow-y-auto fixed right-0 rounded-lg text-black`}>
             <div className="flex justify-between items-center p-7 cursor-pointer">
                 <h2 className='font-medium text-xl'>My Order</h2>
@@ -58,7 +58,7 @@ const ChekoutSideMenu = () => {
             <Link to = '/MyOrders'>
                 <button 
             className = 
-            'w-full bg-gradient-to-r from-cyan-500/75 via-blue-700/75 to-cyan-500/75 text-white rounded-lg mb-4'
+            'w-full bg-gradient-to-r from-cyan-500/75 via-blue-700/75 to-cyan-500/75 text-white rounded-lg mb-7'
             onClick={()=> handleCheckout()}>
                 Pick Up
                 </button>
