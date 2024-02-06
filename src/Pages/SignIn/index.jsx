@@ -13,9 +13,13 @@ function SignIn() {
   const parsedAccount = JSON.parse(account)
 
   //HAS AN ACCOUNT OR NOT?
-  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
-  const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
-  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
+  const hasValidAccount = account => {
+    return account && account.name && account.email && account.password;
+  }
+
+  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true;
+  const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true;
+  const hasUserAnAccount = (hasValidAccount(parsedAccount) && !noAccountInLocalStorage) || (hasValidAccount(context.account) && !noAccountInLocalState);
 
   const handleSignIn = () => {
     const stringifiedSignOut = JSON.stringify(false)

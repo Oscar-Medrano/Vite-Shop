@@ -57,7 +57,7 @@ const Card = ({data}) => {
                 {renderIcons(data.id)}
             </figure>
             <p className="flex justify-between p-4 overflow-auto" >
-                <span className=" text-sm font-light truncate">{title}</span>
+                <span className=" text-md font-light truncate">{title}</span>
                 <span className=" text-lg font-medium">${price}</span>
             </p>
         </div>
